@@ -2,7 +2,7 @@
     "name": "timeline",
     "title": "Vertical Timeline",
     "description": "JQuery Plugin for easily creating vertical timelines and portfolios.",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "author": {
         "name": "Patrick Geyer",
         "url": "http://www.tritoncode.com"
@@ -21,7 +21,7 @@
             "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
         }
     ],
-    "homepage": "script.tritoncode.com/vertical-timeline",
-    "docs": "script.tritoncode.com/docs",
-    "demo": "script.tritoncode.com/demo"
+    "homepage": "script.tritoncode.com/timeline",
+    "docs": "script.tritoncode.com/timeline/docs",
+    "demo": "script.tritoncode.com/timeline/demo"
 }

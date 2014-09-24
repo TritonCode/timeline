@@ -1,8 +1,8 @@
 {
     "name": "timeline",
     "title": "Vertical Timeline",
-    "description": "JQuery Plugin for easily creating vertical timelines and portfolios.",
-    "version": "0.0.4",
+    "description": "JQuery Plugin for easily creating vertical timelines and portfolios. Personalise colours, animation speeds and much more. Show off your work in a visually pleasing fashion. Mobile and Desktop.",
+    "version": "0.0.6",
     "author": {
         "name": "Patrick Geyer",
         "url": "http://www.tritoncode.com"
@@ -13,7 +13,10 @@
             },
     "keywords": [
         "timeline",
-        "vertical"
+        "vertical",
+        "portfolio",
+        "work",
+        "ui"
     ],
     "licenses": [
         {

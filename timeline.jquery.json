@@ -21,7 +21,7 @@
             "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
         }
     ],
-    "homepage": "common.tritoncode.com/script/timeline",
+    "homepage": "common.tritoncode.com/script/timeline/",
     "docs": "common.tritoncode.com/script/timeline/docs",
     "demo": "common.tritoncode.com/script/timeline/demo"
 }

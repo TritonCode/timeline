@@ -6,9 +6,6 @@
     position: relative;
     color: #000;
 }
-.timeline.darkbg .timeline-date{
-    color: white;
-}
 
 .timeline-block .timeline-line {
     content: "";
@@ -24,12 +21,21 @@
     display: none;
 }
 .timeline-block {
-    padding-bottom: 4em;
     position: relative;
+}
+.timeline-block[data-tl-orient="vertical"] {
+    padding-bottom: 4em;
+}
+
+.timeline-block[data-tl-orient="horizontal"] {
+    display: table-cell;
+    width: 33.3%;
+    padding-right: 1em;
 }
 
 .timeline-block:last-of-type {
     padding-bottom: 0px;
+    padding-right: 0px;
 }
 
 .timeline-content {
@@ -40,6 +46,11 @@
     background: white;
     position: relative;
 }
+
+.timeline-block[data-tl-orient="horizontal"] > .timeline-content {
+    margin: 0px;
+}
+
 .timeline-arrow {
     content: "";
     position: absolute;
@@ -50,6 +61,12 @@
     border: 7px solid transparent;
     border-right: 7px solid white;
 }
+
+.timeline-block[data-tl-orient="horizontal"] > .timeline-content > .timeline-arrow {
+    top: -14px;
+    left: 16px;
+}
+
 .timeline-content:after {
     content: "";
     display: table;
@@ -73,11 +90,19 @@
     opacity: 0.7;
     position: relative;
 }
-.timeline-content .timeline-read-more {
+/*.timeline-content .timeline-read-more {
     float: right;
     padding: .8em 1em;
     color: white;
+}*/
+[data-tl-orient="horizontal"] > .timeline-img {
+    display: block;
+    /*margin: 0 auto;*/
+    margin-left: 0px !important;
+    position: relative;
+    margin-bottom: 2em;
 }
+
 .timeline-img {
     position: absolute;
     top: 0;
@@ -85,68 +110,64 @@
     width: 40px;
     height: 40px;
     background: transparent;
-    border-radius: 50%;
     box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.1), 0 3px 0 4px rgba(0, 0, 0, 0.2);
     background-size: cover;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
 }
 
 .timeline-content img {
     width: 100%;
-    /*max-height: 300px;*/
 }
 
 /*@media only screen and (min-width: 1170px) {*/
 
-    [data-tl-large="true"] > .timeline-block > .timeline-line {
+    [data-tl-large="true"] > .timeline-block[data-tl-orient="vertical"] > .timeline-line {
         left: 50%;
         margin-left: -1px;
         top: 60px;
     }
 
-    [data-tl-large="true"] > .timeline-block > .timeline-content {
+    [data-tl-large="true"] > .timeline-block[data-tl-orient="vertical"] > .timeline-content {
         margin-left: 0px;
         padding: 1.6em;
         width: 45%;
     }
 
-    [data-tl-large="true"] > .timeline-block:nth-child(even) > .timeline-content {
+    [data-tl-large="true"] > .timeline-block[data-tl-orient="vertical"]:nth-child(even) > .timeline-content {
         /*float: right;*/
         margin-left: 55%;
    }
-    [data-tl-large="true"] > .timeline-block:nth-child(even) > .timeline-content > .timeline-arrow {
+    [data-tl-large="true"] > .timeline-block[data-tl-orient="vertical"]:nth-child(even) > .timeline-content > .timeline-arrow {
         top: 24px;
         left: auto;
         right: 100%;
     }
 
-    [data-tl-large="true"] > .timeline-block > .timeline-content > .timeline-arrow {
+    [data-tl-large="true"] > .timeline-block[data-tl-orient="vertical"] > .timeline-content > .timeline-arrow {
         top: 24px;
         left: 100%;
     }
-    [data-tl-large] > .timeline-block > .timeline-content > .timeline-date {
+    [data-tl-large] > .timeline-block[data-tl-orient="vertical"] > .timeline-content > .timeline-date {
         position: absolute;
         width: 100%;
         left: 122%;
         top: 6px;
         font-size: 1rem;
     }
-    [data-tl-large] > .timeline-block:nth-child(even) > .timeline-content > .timeline-date {
+    [data-tl-large] > .timeline-block[data-tl-orient="vertical"]:nth-child(even) > .timeline-content > .timeline-date {
         left: auto !important;
         right: 122% !important;
         text-align: right !important;
     }
-
-    [data-tl-large] > .timeline-content .timeline-read-more {
-        float: left !important;
-    }
-    [data-tl-large] > .timeline-block:nth-child(even) > .timeline-content > .timeline-read-more {
-        float: right !important;
-    }
+    
     [data-tl-large] > .timeline-block > .timeline-img {
-        width: 60px !important;
-        height: 60px !important;
-        left: 50% !important;
-        margin-left: -30px !important;
+        width: 60px;
+        height: 60px;
+        left: 50%;
+        margin-left: -30px;
+    }
+    [data-tl-large] > .timeline-block[data-tl-orient="horizontal"] > .timeline-img {
+        left: 0%;
     }
 /*}*/
 

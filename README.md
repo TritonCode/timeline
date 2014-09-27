@@ -6,7 +6,7 @@ Please consider that the project is still in beta. The current status of the mil
 
 ## Quick start
 
-Download the [latest release](https://github.com/PatrickGeyer/zipball/timeline) and put the required stylesheet at the [top](https://developer.yahoo.com/performance/rules.html#css_top) of your markup:
+Download the [latest release](https://github.com/PatrickGeyer/timeline/zipball/master) and put the required stylesheet at the [top](https://developer.yahoo.com/performance/rules.html#css_top) of your markup:
 
 ```html
 <link rel="stylesheet" href="timeline/timeline.css" />

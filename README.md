@@ -1,66 +1,51 @@
-# Owl Carousel 2 Beta
+# Dynamic Timeline
 
-Touch enabled [jQuery](http://jquery.com/) plugin that lets you createbeautiful responsive carousel slider. **To get started, check out http://owlcarousel.owlgraphic.com.**
+Dynamic [jQuery](http://jquery.com/) time line plugin that lets you create beautiful and responsive time lines. **To get started, check out http://common.tritoncode.com/script/timeline/.**
 
-Please consider that the project is still in beta. The current status of the milestones can be found [here](https://github.com/OwlFonk/OwlCarousel2/milestones). If you want to use the [latest development](https://github.com/OwlFonk/OwlCarousel2/archive/develop.zip) see [building](#building).
+Please consider that the project is still in beta. The current status of the milestones can be found [here](https://github.com/PatrickGeyer/timeline/milestones).
 
 ## Quick start
 
-Download the [latest release](http://owlcarousel.owlgraphic.com/download/owl.carousel.zip) and put the required stylesheet at the [top](https://developer.yahoo.com/performance/rules.html#css_top) of your markup:
+Download the [latest release](https://github.com/PatrickGeyer/zipball/timeline) and put the required stylesheet at the [top](https://developer.yahoo.com/performance/rules.html#css_top) of your markup:
 
 ```html
-<link rel="stylesheet" href="owlcarousel/owl.carousel.min.css" />
+<link rel="stylesheet" href="timeline/timeline.css" />
 ```
 
 Put the script at the [bottom](https://developer.yahoo.com/performance/rules.html#js_bottom) of your markup right after jQuery:
 
 ```html
 <script src="jquery.min.js"></script>
-<script src="owlcarousel/owl.carousel.min.js"></script>
+<script src="timeline/timeline.js"></script>
 ```
 
-Wrap your items (`div`, `a`, `img`, `span`, `li` etc.) with a container element (`div`, `ul` etc.). Only the class `owl-carousel` is mandatory to apply proper styles:
+Wrap your time line items with a container element (`div.timeline-block`). Only the class `timeline-block` is mandatory to apply proper styles:
 
 ```html
-<div class="owl-carousel">
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
+<div class="timeline">
+  <div class="timeline-block">
+    My Content!
+  </div>
 </div>
 ```
 
-Call the [plugin](http://learn.jquery.com/plugins/) function and your carousel is ready.
+Call the [plugin](http://learn.jquery.com/plugins/) function and your time line is ready.
 
 ```javascript
 $(document).ready(function(){
-  $('.owl-carousel').owlCarousel();
+  $('.timeline').timeline();
 });
 ```
 
 ## Documentation
 
-The documentation, included in this repo in the root directory, is built with [Assemble](http://assemble.io/) and publicly available at http://owlcarousel.owlgraphic.com. The documentation may also be run locally.
-
-## Building
-
-This package comes with [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/). The following tasks are available:
-
-  * `default` compiles the CSS and JS into `/dist` and builds the doc.
-  * `dist` compiles the CSS and JS into `/dist` only.
-  * `watch` watches source files and builds them automatically whenever you save.
-  * `test` runs [JSHint](http://www.jshint.com/) and [QUnit](http://qunitjs.com/) tests headlessly in [PhantomJS](http://phantomjs.org/).
-
-To define which plugins are build into the distribution just edit `/_config.json` to fit your needs.
+The documentation is publicly available at http://common.tritoncode.com/script/timeline/#docs.
 
 ## Contributing
 
-The [issue tracker](https://github.com/OwlFonk/OwlCarousel2/issues) is the preferred channel for bug reports, features requests and submitting pull requests.
+The [issue tracker](https://github.com/PatrickGeyer/timeline/issues) is the preferred channel for bug reports, features requests and submitting pull requests.
 
-**Please do not use the issue tracker for personal support requests. Stack Overflow ([`owl-carousel`](http://stackoverflow.com/questions/tagged/owl-carousel)) is a better place to get help.**
+**Please do not use the issue tracker for personal support requests. Stack Overflow ([`owl-carousel`](http://stackoverflow.com/questions/tagged/dynamic-timeline)) is a better place to get help.**
 
 ### Bug reports
 
@@ -103,9 +88,9 @@ Adhering to the following process is the best way to get your work included in t
   1. [Fork](http://help.github.com/fork-a-repo/) the project, clone your fork, and configure the remotes:
 
     ```bash
-    git clone https://github.com/<your-username>/OwlCarousel2.git
-    cd OwlCarousel2
-    git remote add upstream https://github.com/OwlFonk/OwlCarousel2.git
+    git clone https://github.com/<your-username>/timeline.git
+    cd timeline
+    git remote add upstream https://github.com/PatrickGeyer/timeline.git
     ```
 
   2. If you cloned a while ago, get the latest changes from upstream:

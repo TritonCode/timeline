@@ -1,7 +1,7 @@
 {
     "name": "timeline",
-    "title": "Vertical Timeline",
-    "description": "JQuery Plugin for easily creating vertical timelines and portfolios. Personalise colours, animation speeds and much more. Show off your work in a visually pleasing fashion. Mobile and Desktop.",
+    "title": "Dynamic Timeline",
+    "description": "JQuery Plugin for easily creating vertical and horizontal time lines and portfolios. Personalise colours, animation speeds and much more. Show off your work in a visually pleasing fashion. Mobile and Desktop.",
     "version": "0.0.0",
     "author": {
         "name": "Patrick Geyer",
@@ -25,6 +25,6 @@
         }
     ],
     "homepage": "common.tritoncode.com/script/timeline/",
-    "docs": "common.tritoncode.com/script/timeline/docs",
-    "demo": "common.tritoncode.com/script/timeline/demo"
+    "docs": "common.tritoncode.com/script/timeline/#docs",
+    "demo": "common.tritoncode.com/script/timeline/#demo"
 }

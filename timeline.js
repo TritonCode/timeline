@@ -1,25 +1,25 @@
 $.fn.timeline = function (opt) {
     var getDataAttr = function (element) {
         var data_option = {};
-        data_option.lineColor = element.attr('data-tl-lineColor');
-        data_option.lineThickness = element.attr('data-tl-lineThickness');
-        data_option.lineSpeed = element.attr('data-tl-line_speed');
-        data_option.fadeImages = element.attr('data-tl-fadeImages');
-        data_option.background = element.attr('data-tl-background');
-        data_option.color = element.attr('data-tl-color');
-        data_option.image = element.attr('data-tl-img');
-        data_option.imageBorderColor = element.attr('data-tl-imageBorderColor');
-        data_option.orientation = (typeof element.attr('data-tl-orientation') !== "undefined" && typeof element.attr('data-tl-orientation') !== false ? $.parseJSON(element.attr('data-tl-orientation')) : []);
-        data_option.treeView = element.attr('data-tl-treeView');
-        data_option.date = element.attr('data-tl-date');
+//        var keys = Object.keys(option);
+        $.each(option, function(i, val) {
+            if (typeof element.attr('data-tl-' + [i]) !== "undefined" && typeof element.attr('data-tl-' + [i]) !== false) {
+                try {
+                    data_option[[i]] = $.parseJSON(element.attr('data-tl-' + [i]));
+                    return true; //continue;
+                } catch (e) {}
+                if (typeof data_option[i] !== "object") {
+                    data_option[[i]] = element.attr('data-tl-' + [i]);
+                }
+            }
+        });
 
+        var data_json = (typeof element.attr('data-tl') !== "undefined" && typeof element.attr('data-tl') !== false ? $.parseJSON(element.attr('data-tl')) : []);
+
+        $.extend(true, data_option, data_json);
         return data_option;
     };
-    var rgba2hex = function (r, g, b, a) {
-        if (r > 255 || g > 255 || b > 255 || a > 255)
-            throw "Invalid color component";
-        return (256 + r).toString(16).substr(1) + ((1 << 24) + (g << 16) | (b << 8) | a).toString(16).substr(1);
-    };
+
     var screen_size;
     var self = $(this);
     var option = {
@@ -42,7 +42,11 @@ $.fn.timeline = function (opt) {
         imageBorderWidth: 2,
         imageBorderColor: "rgba(220, 220, 220, 1)",
         distanceBetweenBoxAndImage: 5,
-        orientation: [{min: 0, max: 10000, orientation: "vertical"}],
+        orientation: [{
+                min: 0,
+                max: 10000,
+                orientation: "vertical"
+            }],
         treeView: 900
     };
     var data_option = getDataAttr($(this));
@@ -51,12 +55,12 @@ $.fn.timeline = function (opt) {
 
     var init = function () {
         self.children(".timeline-block").each(function () {
-            $(this).wrapInner($("<div class='timeline-content'></div>"))
+            $(this).wrapInner($("<div class='timeline-content'></div>"));
             if ($(this).children(".timeline-img").length < 1) {
                 $(this).prepend($("<div class='timeline-img'></div>"));
             }
             if ($(this).children(".timeline-date").length < 1) {
-//                $(this).prepend($("<div class='timeline-date'></div>"));
+                //                $(this).prepend($("<div class='timeline-date'></div>"));
             }
         });
 
@@ -175,12 +179,12 @@ $.fn.timeline = function (opt) {
                     resize();
                 }
             } else {
-//            $(this).find('.timeline-img, .timeline-content').addClass('is-hidden').removeClass('bounce-in');
+                //            $(this).find('.timeline-img, .timeline-content').addClass('is-hidden').removeClass('bounce-in');
             }
 
             if (box_option.fadeLine === true) {
                 var this_outer_height = $(this).outerHeight(true) - $(this).children('.timeline-img').outerHeight();
-                var this_outer_width = $(this).width() - parseInt($(this).children('.timeline-line').css('left'));
+                var this_outer_width = $(this).outerWidth(true) - parseInt($(this).children('.timeline-line').css('left'));
                 var distance_bottom = $(document).height() - $(this).offset().top;
                 var scroll_left = $(document).height() - $(window).scrollTop() - $(window).height();
                 var offset = $(window).height() / 2;
@@ -246,7 +250,7 @@ $.fn.timeline = function (opt) {
             $(this).children(".timeline-img").css("border-width", box_option.imageBorderWidth);
 
             $(this).children(".timeline-date").html(box_option.date);
-            
+
             $(this).children(".timeline-line").css("transition-duration", box_option.lineSpeed + "ms");
         });
     };
@@ -268,7 +272,7 @@ $.fn.timeline = function (opt) {
 $(function () {
 
     $('[data-tl-autoinit]').each(function () {
-        console.log('Timeline automatic initialization due to auto data tag.');
+//        console.log('Timeline automatic initialization due to auto data tag.');
         $(this).timeline();
     });
 });

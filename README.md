@@ -45,7 +45,7 @@ The documentation is publicly available at http://common.tritoncode.com/script/t
 
 The [issue tracker](https://github.com/PatrickGeyer/timeline/issues) is the preferred channel for bug reports, features requests and submitting pull requests.
 
-**Please do not use the issue tracker for personal support requests. Stack Overflow ([`owl-carousel`](http://stackoverflow.com/questions/tagged/dynamic-timeline)) is a better place to get help.**
+**Please do not use the issue tracker for personal support requests. Stack Overflow ([`dynamic-timeline`](http://stackoverflow.com/questions/tagged/dynamic-timeline)) is a better place to get help.**
 
 ### Bug reports
 

@@ -2,12 +2,13 @@ $.fn.timeline = function (opt) {
     var getDataAttr = function (element) {
         var data_option = {};
 //        var keys = Object.keys(option);
-        $.each(option, function(i, val) {
+        $.each(option, function (i, val) {
             if (typeof element.attr('data-tl-' + [i]) !== "undefined" && typeof element.attr('data-tl-' + [i]) !== false) {
                 try {
                     data_option[[i]] = $.parseJSON(element.attr('data-tl-' + [i]));
                     return true; //continue;
-                } catch (e) {}
+                } catch (e) {
+                }
                 if (typeof data_option[i] !== "object") {
                     data_option[[i]] = element.attr('data-tl-' + [i]);
                 }
@@ -17,7 +18,35 @@ $.fn.timeline = function (opt) {
         var data_json = (typeof element.attr('data-tl') !== "undefined" && typeof element.attr('data-tl') !== false ? $.parseJSON(element.attr('data-tl')) : []);
 
         $.extend(true, data_option, data_json);
+        
+        if(ie < 9) {
+            $.each(data_option, function (i, val) {
+//                console.log(data_option[i]);
+                if(typeof rgbaToRgb(data_option[i]) !== "undefined") {
+                    data_option[i] = rgbaToRgb(data_option[i]);
+                }
+                if(typeof rgbaToRgb(data_option[i]) !== "undefined") {
+                    data_option[i] = rgbaToRgb(data_option[i]);
+                }
+            });
+        }
+        
         return data_option;
+    };
+
+    var rgbaToRgb = function (rgba) {
+        try {
+            var bits = rgba.split("(");
+        } catch (e) {
+            return;
+        }
+        if (typeof bits[1] !== "undefined") {
+            console.log('splitting');
+            bits = bits[1].split(")")[0].split(",");
+
+            return "rgb(" + bits[0] + "," + bits[1] + "," + bits[2] + ")";
+        }
+        return;
     };
 
     var screen_size;
@@ -83,9 +112,9 @@ $.fn.timeline = function (opt) {
         var width = 100 / self.children(".timeline-block").length;
         screen_size = (self.parent().width() > option.treeView);
         if (screen_size === true) {
-            self.attr('data-tl-large', 'true');
+            self.addClass('tl-large');
         } else {
-            self.removeAttr('data-tl-large');
+            self.removeClass('tl-large');
         }
 
         self.children(".timeline-block").each(function (i) {
@@ -97,8 +126,12 @@ $.fn.timeline = function (opt) {
 
                 if ((self.parent().width() > box_option.orientation[o].min || typeof box_option.orientation[o].min === "undefined") && (self.parent().width() < box_option.orientation[o].max || typeof box_option.orientation[o].max === "undefined") && (typeof box_option.orientation[o].min !== "undefined" || typeof box_option.orientation[o].max !== "undefined")) {
                     $(this).attr("data-tl-orient", box_option.orientation[o].orientation);
+                    $(this).removeClass("tl-orient-vertical");
+                    $(this).addClass("tl-orient-" + box_option.orientation[o].orientation);
                 } else {
                     $(this).attr("data-tl-orient", "vertical");
+                    $(this).removeClass("tl-orient-horizontal");
+                    $(this).addClass("tl-orient-vertical");
                 }
             }
             if (typeof $(this).attr('data-tl-orient') === "undefined" || typeof $(this).attr('data-tl-orient') === false) {
@@ -108,7 +141,7 @@ $.fn.timeline = function (opt) {
             if ($(this).attr('data-tl-orient') == "vertical") {
 
                 $(this).children(".timeline-line").css('top', $(this).children(".timeline-img").outerHeight(true));
-                if (self.attr('data-tl-large') == "true") {
+                if (self.hasClass('tl-large')) {
                     $(this).children(".timeline-line").css('left', $(this).outerWidth() / 2);
                     $(this).children(".timeline-content").css('margin-left', ''); //normalize the margin on the left for the space for the image
                 } else {
@@ -206,14 +239,30 @@ $.fn.timeline = function (opt) {
                     height = (height >= this_outer_width ? this_outer_width : height);
                     percent_scrolled = (height / this_outer_width) * 100;
                 }
-
-                if ($(this).attr('data-tl-orient') == "vertical") {
-                    $(this).children('.timeline-line').css('height', height).css('width', box_option.lineThickness);
-                    $(this).children(".timeline-line").css("background", "linear-gradient(180deg, " + box_option.lineColor + " " + percent_scrolled + "%, rgba(0, 0, 0, 0))");
+                if (ie < 9) {
+                    $(this).children(".timeline-line").css("background", box_option.lineColor);
+                    
+                    if ($(this).attr('data-tl-orient') == "vertical") {
+                        $(this).children('.timeline-line').animate({
+                            'height': height, 
+                            'width': box_option.lineThickness}, box_option.lineSpeed, function() {});
+                        $(this).children(".timeline-line").css("background", "linear-gradient(180deg, " + box_option.lineColor + " " + percent_scrolled + "%, rgba(0, 0, 0, 0))");
+                    } else {
+                       $(this).children('.timeline-line').clearQueue().animate({
+                            'width': height, 
+                            'height': box_option.lineThickness}, box_option.lineSpeed, function() {});
+                    }
+                    
                 } else {
-                    $(this).children('.timeline-line').css('width', height).css('height', box_option.lineThickness);
-                    $(this).children(".timeline-line").css("background", "linear-gradient(90deg, " + box_option.lineColor + " " + percent_scrolled + "%, rgba(0, 0, 0, 0))");
+                    if ($(this).attr('data-tl-orient') == "vertical") {
+                        $(this).children('.timeline-line').css('height', height).css('width', box_option.lineThickness);
+                        $(this).children(".timeline-line").css("background", "linear-gradient(180deg, " + box_option.lineColor + " " + percent_scrolled + "%, rgba(0, 0, 0, 0))");
+                    } else {
+                        $(this).children('.timeline-line').css('width', height).css('height', box_option.lineThickness);
+                        $(this).children(".timeline-line").css("background", "linear-gradient(90deg, " + box_option.lineColor + " " + percent_scrolled + "%, rgba(0, 0, 0, 0))");
+                    }
                 }
+
             }
         });
     };
@@ -242,9 +291,14 @@ $.fn.timeline = function (opt) {
                     .css('border-radius', box_option.borderRadius)
                     .css('-moz-border-radius', box_option.borderRadius)
                     .css('-ms-border-radius', box_option.borderRadius);
+            
+//            if(ie < 9) {
+//                $(this).children(".timeline-content").corner(box_option.borderRadius);
+//            }
 
             $(this).children('.timeline-content').css('background', box_option.background).css("color", box_option.color);
-            $(this).children('.timeline-content').css('filter', 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#50990000,endColorstr=#50990000');
+            
+//            $(this).children('.timeline-content').css('filter', 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#50990000,endColorstr=#50990000');
 
             $(this).children(".timeline-content").children('.timeline-arrow').css("border-width", box_option.arrowWidth);
             $(this).children(".timeline-img").css("border-width", box_option.imageBorderWidth);
@@ -273,6 +327,32 @@ $(function () {
 
     $('[data-tl-autoinit]').each(function () {
 //        console.log('Timeline automatic initialization due to auto data tag.');
+    $(this).children(".timeline-block:nth-child(even)").addClass("tl-even");
+    $(this).children(".timeline-block:nth-child(odd)").addClass("tl-odd");
+//    $(".my_table tr:nth-child(odd)").addClass("odd");
         $(this).timeline();
     });
 });
+
+var ie = (function () {
+
+    var undef,
+            v = 3,
+            div = document.createElement('div'),
+            all = div.getElementsByTagName('i');
+
+    while (
+            div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+            all[0]
+            )
+        ;
+
+    return v > 4 ? v : undef;
+
+}());
+//
+//if(ie < 9) {
+//    $.getScript("http://malsup.github.io/jquery.corner.js", function(){
+//        
+//    });
+//}

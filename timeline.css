@@ -26,7 +26,7 @@
 .timeline-block {
     position: relative;
 }
-.timeline-block[data-tl-orient="vertical"] {
+.timeline-block.tl-orient-vertical {
     padding-bottom: 4em;
 }
 
@@ -124,52 +124,52 @@
 
 /*@media only screen and (min-width: 1170px) {*/
 
-    [data-tl-large="true"] > .timeline-block[data-tl-orient="vertical"] > .timeline-line {
+    .tl-large > .timeline-block.tl-orient-vertical > .timeline-line {
         left: 50%;
         margin-left: -1px;
         top: 60px;
     }
 
-    [data-tl-large="true"] > .timeline-block[data-tl-orient="vertical"] > .timeline-content {
+    .tl-large > .timeline-block.tl-orient-vertical > .timeline-content {
         margin-left: 0px;
         padding: 1.6em;
         width: 45%;
     }
 
-    [data-tl-large="true"] > .timeline-block[data-tl-orient="vertical"]:nth-child(even) > .timeline-content {
+    .tl-large > .timeline-block.tl-orient-vertical.tl-even > .timeline-content {
         /*float: right;*/
         margin-left: 55%;
    }
-    [data-tl-large="true"] > .timeline-block[data-tl-orient="vertical"]:nth-child(even) > .timeline-content > .timeline-arrow {
+    .tl-large > .timeline-block.tl-orient-vertical.tl-even > .timeline-content > .timeline-arrow {
         top: 24px;
         left: auto;
         right: 100%;
     }
 
-    [data-tl-large="true"] > .timeline-block[data-tl-orient="vertical"] > .timeline-content > .timeline-arrow {
+    .tl-large > .timeline-block.tl-orient-vertical > .timeline-content > .timeline-arrow {
         top: 24px;
         left: 100%;
     }
-    [data-tl-large] > .timeline-block[data-tl-orient="vertical"] > .timeline-date {
+    .tl-large > .timeline-block.tl-orient-vertical > .timeline-date {
         position: absolute;
         width: 100%;
         left: 122%;
         top: 6px;
         font-size: 1rem;
     }
-    [data-tl-large] > .timeline-block[data-tl-orient="vertical"]:nth-child(even) > .timeline-date {
+    .tl-large > .timeline-block.tl-orient-vertical.tl-even > .timeline-date {
         left: auto !important;
         right: 122% !important;
         text-align: right !important;
     }
     
-    [data-tl-large] > .timeline-block > .timeline-img {
+    .tl-large > .timeline-block > .timeline-img {
         width: 60px;
         height: 60px;
         left: 50%;
         margin-left: -30px;
     }
-    [data-tl-large] > .timeline-block[data-tl-orient="horizontal"] > .timeline-img {
+    .tl-large > .timeline-block[data-tl-orient="horizontal"] > .timeline-img {
         left: 0%;
     }
 /*}*/

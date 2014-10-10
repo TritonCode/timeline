@@ -2,7 +2,7 @@
     "name": "timeline",
     "title": "Dynamic Timeline",
     "description": "JQuery Plugin for easily creating vertical and horizontal time lines and portfolios. Personalise colours, animation speeds and much more. Show off your work in a visually pleasing fashion. Mobile and Desktop.",
-    "version": "0.0.0",
+    "version": "0.0.7",
     "author": {
         "name": "Patrick Geyer",
         "url": "http://www.tritoncode.com"
@@ -24,7 +24,7 @@
             "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
         }
     ],
-    "homepage": "common.tritoncode.com/script/timeline/",
-    "docs": "common.tritoncode.com/script/timeline/#docs",
-    "demo": "common.tritoncode.com/script/timeline/#demo"
+    "homepage": "http://common.tritoncode.com/script/timeline/",
+    "docs": "http://common.tritoncode.com/script/timeline/#docs",
+    "demo": "http://common.tritoncode.com/script/timeline/#demo"
 }

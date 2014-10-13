@@ -199,7 +199,7 @@ $.fn.timeline = function (opt) {
             if ($("body").height() <= $(window).height()) {
 
                 $(this).find('.timeline-content').removeClass('is-hidden').addClass('bounce-in');
-                console.log('no vertical bar');
+//                console.log('no vertical bar');
                 if (box_option.fadeImages === true) {
                     $(this).find('.timeline-img').removeClass('is-hidden').addClass('bounce-in');
                     resize();

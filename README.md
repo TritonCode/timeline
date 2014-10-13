@@ -1,10 +1,4 @@
 # Dynamic Timeline
-## Attention!
-
-Please use the public hosted version of this plugin at http://common.tritoncode.com/script/timeline/
-The needed files are at http://common.tritoncode.com/script/timeline/timeline.js and http://common.tritoncode.com/script/timeline/timeline.css.
-
-The files will always be the most up-to-date!
 
 Dynamic [jQuery](http://jquery.com/) time line plugin that lets you create beautiful and responsive time lines. **To get started, check out http://common.tritoncode.com/script/timeline/.**
 
@@ -15,14 +9,14 @@ Please consider that the project is still in beta. The current status of the mil
 Download the [latest release](https://github.com/PatrickGeyer/timeline/zipball/master) and put the required stylesheet at the [top](https://developer.yahoo.com/performance/rules.html#css_top) of your markup:
 
 ```html
-<link rel="stylesheet" href="timeline/timeline.css" />
+<link rel="stylesheet" href="timeline/timeline.min.css" />
 ```
 
 Put the script at the [bottom](https://developer.yahoo.com/performance/rules.html#js_bottom) of your markup right after jQuery:
 
 ```html
 <script src="jquery.min.js"></script>
-<script src="timeline/timeline.js"></script>
+<script src="timeline/timeline.min.js"></script>
 ```
 
 Wrap your time line items with a container element (`div.timeline-block`). Only the class `timeline-block` is mandatory to apply proper styles:

@@ -1,4 +1,10 @@
 # Dynamic Timeline
+## Attention!
+
+Please use the public hosted version of this plugin at http://common.tritoncode.com/script/timeline/
+The needed files are at http://common.tritoncode.com/script/timeline/timeline.js and http://common.tritoncode.com/script/timeline/timeline.css.
+
+The files will always be the most up-to-date!
 
 Dynamic [jQuery](http://jquery.com/) time line plugin that lets you create beautiful and responsive time lines. **To get started, check out http://common.tritoncode.com/script/timeline/.**
 

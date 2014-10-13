@@ -52,7 +52,7 @@ $.fn.timeline = function(opt) {
 	var self = $(this);
 	var option = {
 		arrowWidth: 7,
-		background: "white",
+		background: "#0084c2",
 		borderRadius: "0.3em",
 		color: "inherit",
 		lineColor: "rgba(0, 0, 0, 0.3)",
@@ -179,6 +179,7 @@ $.fn.timeline = function(opt) {
 	};
 
 	var scroll = function() {
+
 		self.children(".timeline-block").each(function(i) {
 			var box_option = $.extend(true, {}, option);
 			var box_data_option = getDataAttr($(this));
@@ -192,6 +193,25 @@ $.fn.timeline = function(opt) {
 				}
 			} else {
 				//            $(this).find('.timeline-img, .timeline-content').addClass('is-hidden').removeClass('bounce-in');
+			}
+			
+			if ($("body").height() <= $(window).height()) {
+				
+				$(this).find('.timeline-content').removeClass('is-hidden').addClass('bounce-in');
+				console.log('no vertical bar');
+				if (box_option.fadeImages === true) {
+					$(this).find('.timeline-img').removeClass('is-hidden').addClass('bounce-in');
+					resize();
+				}
+			}
+
+			// Check if body width is higher than window width :)
+			if ($("body").width() <= $(window).width()) {
+				$(this).find('.timeline-content').removeClass('is-hidden').addClass('bounce-in');
+				if (box_option.fadeImages === true) {
+					$(this).find('.timeline-img').removeClass('is-hidden').addClass('bounce-in');
+					resize();
+				}
 			}
 
 			if (box_option.fadeLine === true) {
@@ -243,7 +263,7 @@ $.fn.timeline = function(opt) {
 						$(this).children(".timeline-line").css("background", "linear-gradient(90deg, " + box_option.lineColor + " " + percent_scrolled + "%, rgba(0, 0, 0, 0))");
 					}
 				}
-		
+
 			}
 		});
 	};
@@ -272,7 +292,7 @@ $.fn.timeline = function(opt) {
 			if (option.fadeIn === false) {
 				self.find('.timeline-img, .timeline-content').removeClass('is-hidden').addClass('bounce-in');
 			} else {
-				self.find('.timeline-content').addClass('is-hidden');
+ 				self.find('.timeline-content').addClass('is-hidden');
 				if (option.fadeImages === true) {
 					self.find('.timeline-img').addClass('is-hidden');
 				}
@@ -315,13 +335,14 @@ $.fn.timeline = function(opt) {
 
 				$(this).children(".timeline-line").css("transition-duration", box_option.lineSpeed + "ms");
 			});
-				resize();
+			resize();
 		}
 	};
 
 	init();
 	resize();
 	funcs.update();
+	scroll();
 
 
 	$(window).on('resize', function() {

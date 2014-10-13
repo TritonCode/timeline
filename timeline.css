@@ -1,5 +1,6 @@
 .timeline * {
     /*color: inherit;*/
+    
 }
 
 .timeline {
@@ -47,6 +48,7 @@
     padding: 1em;
     background: white;
     position: relative;
+    box-sizing: border-box;
 }
 
 .timeline-block[data-tl-orient="horizontal"] > .timeline-content {

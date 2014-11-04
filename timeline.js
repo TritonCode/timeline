@@ -52,31 +52,31 @@ $.fn.timeline = function (opt) {
     var screen_size;
     var self = $(this);
     var option = {
-        arrowWidth: 7,
-        background: "#0084c2",
-        borderRadius: "0.3em",
-        color: "inherit",
-        lineColor: "rgba(0, 0, 0, 0.3)",
-        lineThickness: "2px",
-        date: "",
-        dateColor: "inherit",
-        datePosition: "absolute",
-        fadeIn: true,
-        fadeLine: true,
-        lineSpeed: 1000,
-        lineMaxBlur: 100,
-        fadeImages: true,
-        image: "transparent",
-        imageBorderRadius: "0.3em",
-        imageBorderWidth: 2,
-        imageBorderColor: "rgba(220, 220, 220, 1)",
-        distanceBetweenBoxAndImage: 5,
-        orientation: [{
+        arrowWidth: 7, // width of the arrow pointing towards the box belonging to an event
+        background: "#0084c2", // background color of a timeline block
+        borderRadius: "0.3em", // border radius of a timline block. Support >IE8
+        color: "inherit", // color of the text inside the block
+        lineColor: "rgba(0, 0, 0, 0.3)", // color of the line that runs the length of the timeline
+        lineThickness: "2px", // thickness of the line that runs the length of the timeline
+        date: "", // date of an event
+        dateColor: "inherit", // text color of the date of an event
+        datePosition: "absolute", // Do Not Use
+        fadeIn: true, // should boxed be hidden before the user scrolls down to them
+        fadeLine: true, // should the line appear as user scrolls, or be there constantly
+        lineSpeed: 1000, // animation speed of the line indicating the users progress
+        lineMaxBlur: 100, // fading out of the bottom of the line indicating the users progress scrolled.
+        fadeImages: true, // hide images before user scrolls them into view
+        image: "transparent", // the background image of the box belonging to the event. Sets the css background property so url() is needed
+        imageBorderRadius: "0.3em", // border radius of the box belonging to an event. Support >IE8
+        imageBorderWidth: 2, // width of the border of the box belonging to an event
+        imageBorderColor: "rgba(220, 220, 220, 1)", // border color of the box belonging to an event
+        distanceBetweenBoxAndImage: 5, // distance between the timeline content and the box
+        orientation: [{ 
                 min: 0,
                 max: 10000,
                 orientation: "vertical"
-            }],
-        treeView: 900
+            }], // min and max sizes of the page defining if the timeline is horizontal or vertical
+        treeView: 900 // minimum width of page before a vertical timeline splits into tree view
     };
     var data_option = getDataAttr($(this));
 

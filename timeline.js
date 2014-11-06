@@ -274,7 +274,6 @@ $.fn.timeline = function (opt) {
     var funcs = {
         update: function () {
             self.children(".timeline-block").each(function () {
-                console.log('update');
                 if ($(this).children(".timeline-content").length < 1) {
                     $(this).wrapInner($("<div class='timeline-content'></div>"));
                 }

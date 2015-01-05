@@ -57,7 +57,7 @@ $.fn.timeline = function (opt) {
         borderRadius: "0.3em", // border radius of a timline block. Support >IE8
         color: "inherit", // color of the text inside the block
         lineColor: "rgba(0, 0, 0, 0.3)", // color of the line that runs the length of the timeline
-        lineThickness: "2px", // thickness of the line that runs the length of the timeline
+        lineThickness: 2, // thickness of the line that runs the length of the timeline
         date: "", // date of an event
         dateColor: "inherit", // text color of the date of an event
         datePosition: "absolute", // Do Not Use
@@ -76,7 +76,8 @@ $.fn.timeline = function (opt) {
                 max: 10000,
                 orientation: "vertical"
             }], // min and max sizes of the page defining if the timeline is horizontal or vertical
-        treeView: 900 // minimum width of page before a vertical timeline splits into tree view
+        treeView: 900, // minimum width of page before a vertical timeline splits into tree view,
+		centered_boxes: true
     };
     var data_option = getDataAttr($(this));
 
@@ -117,6 +118,10 @@ $.fn.timeline = function (opt) {
             if (typeof $(this).attr('data-tl-orient') === "undefined" || typeof $(this).attr('data-tl-orient') === false) {
                 $(this).attr("data-tl-orient", "vertical");
             }
+			
+			if(box_option.centered_boxes === true) {
+				$(this).addClass('tl-centered-boxes');
+			}
 
             if ($(this).attr('data-tl-orient') == "vertical") {
 
@@ -157,22 +162,46 @@ $.fn.timeline = function (opt) {
                     $(this).children(".timeline-content").children('.timeline-arrow').css("border-left-color", 'transparent');
                     $(this).children(".timeline-content").children('.timeline-date').css("color", 'white');
                 }
+				
+				$(this).children(".timeline-content").children('.timeline-arrow').css("top", ($(this).children(".timeline-img").outerHeight(true) / 2) - box_option.arrowWidth);
+				
+				if(box_option.centered_boxes === true && screen_size === false) {
+					
+                    $(this).children(".timeline-content").children('.timeline-arrow').css("border-bottom-color", box_option.background);
+                    $(this).children(".timeline-content").children('.timeline-arrow').css("border-left-color", 'transparent');
+					$(this).children(".timeline-content").children('.timeline-arrow').css("border-right-color", 'transparent');
+					$(this).children(".timeline-content").children('.timeline-arrow').css("top", -box_option.arrowWidth*2);
+					$(this).children(".timeline-content, .timeline-img").css('margin-left', '0');
+					var gap =  $(this).children(".timeline-img").outerHeight() + 20 + box_option.imageBorderWidth*2;
+					$(this).css('margin-top', gap);
+					if(i === 0) {
+						self.css('margin-top', gap + 20);
+					}
+					$(this).children(".timeline-img").css('margin-top', -(box_option.distanceBetweenBoxAndImage + gap));
+					
+					$(this).children(".timeline-img").css('left', $(this).children(".timeline-content").outerWidth()/2 - ($(this).children(".timeline-img").outerWidth()/2) );
+					$(this).children(".timeline-line").css('left', $(this).children(".timeline-content").outerWidth()/2 - (box_option.lineThickness/2) + 1);
+					$(this).find('.timeline-arrow').css("left", $(this).children(".timeline-content").outerWidth()/2 - (box_option.arrowWidth)); //only one arrow width (both sides of arrow)
+				} else {
+					 $(this).children(".timeline-content").children('.timeline-arrow').css("border-bottom-color", 'transparent');
+				}
 
-                $(this).children(".timeline-content").children('.timeline-arrow').css("top", ($(this).children(".timeline-img").outerHeight(true) / 2) - box_option.arrowWidth);
+                
 
                 $(this).children(".timeline-content").children('.timeline-date').css("color", box_option.datecolor).css('position', box_option.dateposition);
 
             }
 
-            $(this).children(".timeline-content").children('.timeline-arrow').css("border-bottom-color", 'transparent');
-
-            if ($(this).attr('data-tl-orient') == "horizontal") {
+            if (!$(this).hasClass('tl-orient-vertical')) {
                 $(this).children(".timeline-content").children('.timeline-arrow').css("border-bottom-color", box_option.background);
                 $(this).children(".timeline-content").children('.timeline-arrow').css("border-left-color", 'transparent');
                 $(this).children(".timeline-content").children('.timeline-arrow').css("border-right-color", 'transparent');
 
                 $(this).children(".timeline-content").children('.timeline-arrow').css("left", ($(this).children(".timeline-img").outerWidth(true) / 2) - box_option.arrowWidth / 2);
                 $(this).children(".timeline-content").children('.timeline-arrow').css("top", -(box_option.arrowWidth * 2));
+				$(this).children('.timeline-line').css("top", $(this).children('.timeline-img').outerHeight()/2 + "px");
+				$(this).children('.timeline-img').css("margin", "0").css("margin-bottom", "");
+				$(this).children('.timeline-img').css("left", "0");
             }
 
 
@@ -199,7 +228,6 @@ $.fn.timeline = function (opt) {
             if ($("body").height() <= $(window).height()) {
 
                 $(this).find('.timeline-content').removeClass('is-hidden').addClass('bounce-in');
-//                console.log('no vertical bar');
                 if (box_option.fadeImages === true) {
                     $(this).find('.timeline-img').removeClass('is-hidden').addClass('bounce-in');
                     resize();
@@ -362,7 +390,6 @@ $.fn.timeline = function (opt) {
 $(function () {
 
     $('[data-tl-autoinit]').each(function () {
-        //        console.log('Timeline automatic initialization due to auto data tag.');
         $(this).timeline();
     });
 });
